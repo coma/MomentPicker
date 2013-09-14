@@ -1,0 +1,4 @@
+$(function() {
+
+    $('div').MomentPicker();
+});

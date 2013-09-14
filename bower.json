@@ -1,0 +1,26 @@
+{
+  "name": "MomentPicker",
+  "version": "0.0.0",
+  "homepage": "https://github.com/coma/MomentPicker",
+  "authors": [
+    "Eduardo García Sanz <eduardo@comakai.com>"
+  ],
+  "description": "A datepicker based on Moment.js and jQuery",
+  "keywords": [
+    "datepicker",
+    "momentjs",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "momentjs": "~2.1.0"
+  }
+}
