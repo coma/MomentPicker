@@ -19,21 +19,21 @@ test('basic', function() {
 
     var years = body.children('a');
 
-    ok(years.length === 12, 'Body has 12 years.');
-    equal(years.first().text(), date.year() - 3, 'First year is 3 years before the current year.');
-    equal(years.last().text(), date.year() + 8, 'Last year is 8 years after the current year.');
+    strictEqual(years.length, 12, 'Body has 12 years.');
+    equal(years.first().text(), date.year(), 'First year is the current year.');
+    equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year.');
 
     next.click();
     years = body.children('a');
 
-    ok(years.length === 12, 'Body has 12 years.');
-    equal(years.first().text(), date.year() + 9, 'First year is 9 years after the current year.');
-    equal(years.last().text(), date.year() + 20, 'Last year is 20 years after the current year.');
+    strictEqual(years.length, 12, 'Body has 12 years.');
+    equal(years.first().text(), date.year() + 12, 'First year is 12 years after the current year (next clicked).');
+    equal(years.last().text(), date.year() + 23, 'Last year is 23 years after the current year (next clicked).');
 
     prev.click();
     years = body.children('a');
 
-    ok(years.length === 12, 'Body has 12 years.');
-    equal(years.first().text(), date.year() - 3, 'First year is 3 years before the current year.');
-    equal(years.last().text(), date.year() + 8, 'Last year is 8 years after the current year.');
+    strictEqual(years.length, 12, 'Body has 12 years.');
+    equal(years.first().text(), date.year(), 'First year is the current year (prev clicked).');
+    equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year (prev clicked).');
 });
