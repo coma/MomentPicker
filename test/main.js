@@ -1,6 +1,7 @@
 test('basic', function() {
 
     var date = moment();
+    var picker = $('#picker');
 
     ok(true, 'done');
 
