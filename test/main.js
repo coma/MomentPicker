@@ -1,11 +1,7 @@
 test('basic', function() {
 
     var date = moment();
-    var picker = $('#picker');
-
-    ok(true, 'done');
-
-    /*var picker = $('#picker').MomentPicker();
+    var picker = $('#picker').MomentPicker();
     var header = picker.children('div.header');
     var body = picker.children('div.body');
 
@@ -38,5 +34,5 @@ test('basic', function() {
 
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is the current year (prev clicked).');
-    equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year (prev clicked).');*/
+    equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year (prev clicked).');
 });
