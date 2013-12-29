@@ -13,7 +13,8 @@
 
         return this.each(function() {
 
-            var date = moment();
+            var showedDate = moment();
+            var currentDate = showedDate.clone();
             var picker = $(this);
             var level = 0;
 
@@ -30,17 +31,21 @@
             var body = picker.children('div.body');
             var next = header.children('a.next');
             var prev = header.children('a.prev');
-            var current = header.children('a.current');
+            var currentLevel = header.children('a.current');
 
             var renderYears = function() {
 
-                var a = date.year();
+                var a = showedDate.year();
                 var b = a + 12;
                 var html = '';
 
+                currentLevel.text(a + ' - ' + (b - 1));
+
                 while (a < b) {
 
-                    html += '<a data-year="' + a + '">' + a + '</a>';
+                    var c = a !== currentDate.year() ? '' : ' class="current"';
+
+                    html += '<a data-year="' + a + '"' + c + '>' + a + '</a>';
                     a++;
                 }
 
@@ -49,7 +54,7 @@
 
             var renderMonths = function() {
 
-                var a = date.month();
+                var a = showedDate.month();
                 var b = a + 12;
                 var html = '';
 
@@ -76,14 +81,14 @@
             };
             
             next.click(function() {
-                
-                date.add(levels[level], 12);
+
+                showedDate.add(levels[level], 12);
                 render();
             });
 
             prev.click(function() {
 
-                date.subtract(levels[level], 12);
+                showedDate.subtract(levels[level], 12);
                 render();
             });
 
