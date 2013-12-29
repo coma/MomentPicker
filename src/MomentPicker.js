@@ -13,7 +13,8 @@
 
         return this.each(function() {
 
-            var showedDate = moment();
+            var api;
+            var showedDate = moment().hours(0).minutes(0).seconds(0);
             var currentDate = showedDate.clone();
             var picker = $(this);
             var level = 0;
@@ -32,6 +33,23 @@
             var next = header.children('a.next');
             var prev = header.children('a.prev');
             var currentLevel = header.children('a.current');
+
+            var val = function() {
+
+                if (arguments.length > 0) {
+
+                    var date = moment(arguments[0]);
+
+                    if (moment.isMoment(date)) {
+
+                        currentDate = date.hours(0).minutes(0).seconds(0);
+                    }
+
+                    return api;
+                }
+
+                return currentDate.clone();
+            };
 
             var renderYears = function() {
 
@@ -54,13 +72,19 @@
 
             var renderMonths = function() {
 
-                var a = showedDate.month();
+                var a = 0;
                 var b = a + 12;
+                var date = showedDate.clone();
                 var html = '';
+
+                currentLevel.text(showedDate.year());
 
                 while (a < b) {
 
-                    html += '<a data-month="' + a + '">' + a + '</a>';
+                    var c = a !== currentDate.month() ? '' : ' class="current"';
+
+                    date.month(a);
+                    html += '<a data-month="' + a + '"' + c + '>' + date.format('MMM') + '</a>';
                     a++;
                 }
 
@@ -91,6 +115,20 @@
                 showedDate.subtract(levels[level], 12);
                 render();
             });
+
+            body.on('click', '[data-year]', function() {
+
+                currentDate.year($(this).data('year'));
+                showedDate = currentDate.clone();
+                level = 1;
+                render();
+            });
+
+            api = {
+                val: val
+            };
+
+            picker.data(pluginName, api);
 
             render();
         });

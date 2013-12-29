@@ -1,7 +1,8 @@
 test('basic', function() {
 
-    var date = moment();
+    var date = moment().hours(0).minutes(0).seconds(0);
     var picker = $('#picker').MomentPicker();
+    var api = picker.data('MomentPicker');
     var header = picker.children('div.header');
     var body = picker.children('div.body');
 
@@ -16,7 +17,9 @@ test('basic', function() {
     ok(prev.length === 1, 'Header has a prev button.');
     ok(current.length === 1, 'Header has a current button.');
 
-    var years = body.children('a');
+    strictEqual(api.val().format(), date.format(), 'Current date is correct.');
+
+    var years = body.children();
 
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is the current year.');
@@ -25,7 +28,7 @@ test('basic', function() {
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     next.click();
-    years = body.children('a');
+    years = body.children();
     date.add('y', 12);
 
     strictEqual(years.length, 12, 'Body has 12 years.');
@@ -35,7 +38,7 @@ test('basic', function() {
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     prev.click();
-    years = body.children('a');
+    years = body.children();
     date.subtract('y', 12);
 
     strictEqual(years.length, 12, 'Body has 12 years.');
@@ -45,7 +48,14 @@ test('basic', function() {
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     years.eq(2).click();
-    var months = body.children('a');
+    date.add('y', 2);
+    var months = body.children();
 
+    strictEqual(api.val().format(), date.format(), 'Current date is correct.');
 
+    strictEqual(months.length, 12, 'Body has 12 months.');
+    strictEqual(months.first().text(), 'Jan', 'First month is january.');
+    strictEqual(months.last().text(), 'Dec', 'Last month is december.');
+    ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
+    equal(current.text(), date.year(), 'Current year shows the year.');
 });
