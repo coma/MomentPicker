@@ -1,6 +1,6 @@
 test('basic', function() {
 
-    var date = moment().hours(0).minutes(0).seconds(0);
+    var date = moment().startOf('day');
     var picker = $('#picker').MomentPicker();
     var api = picker.data('MomentPicker');
     var header = picker.children('div.header');
@@ -52,6 +52,26 @@ test('basic', function() {
     var months = body.children();
 
     strictEqual(api.val().format(), date.format(), 'Current date is correct.');
+
+    strictEqual(months.length, 12, 'Body has 12 months.');
+    strictEqual(months.first().text(), 'Jan', 'First month is january.');
+    strictEqual(months.last().text(), 'Dec', 'Last month is december.');
+    ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
+    equal(current.text(), date.year(), 'Current year shows the year.');
+
+    next.click();
+    months = body.children();
+    date.add('y', 1);
+
+    strictEqual(months.length, 12, 'Body has 12 months.');
+    strictEqual(months.first().text(), 'Jan', 'First month is january.');
+    strictEqual(months.last().text(), 'Dec', 'Last month is december.');
+    ok(months.filter('.current').length === 0, 'The current month is not here.');
+    equal(current.text(), date.year(), 'Current year shows the year.');
+
+    prev.click();
+    months = body.children();
+    date.subtract('y', 1);
 
     strictEqual(months.length, 12, 'Body has 12 months.');
     strictEqual(months.first().text(), 'Jan', 'First month is january.');

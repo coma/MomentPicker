@@ -1,4 +1,4 @@
-(function($, _, undefined) {
+(function($, undefined) {
 
     var pluginName = 'MomentPicker';
 
@@ -14,7 +14,7 @@
         return this.each(function() {
 
             var api;
-            var showedDate = moment().hours(0).minutes(0).seconds(0);
+            var showedDate = moment().startOf('day');
             var currentDate = showedDate.clone();
             var picker = $(this);
             var level = 0;
@@ -42,7 +42,7 @@
 
                     if (moment.isMoment(date)) {
 
-                        currentDate = date.hours(0).minutes(0).seconds(0);
+                        currentDate = date.startOf('day');
                     }
 
                     return api;
@@ -72,20 +72,18 @@
 
             var renderMonths = function() {
 
-                var a = 0;
-                var b = a + 12;
-                var date = showedDate.clone();
+                var a = showedDate.clone().startOf('y');
+                var b = a.clone().add('M', 12);
                 var html = '';
 
-                currentLevel.text(showedDate.year());
+                currentLevel.text(a.year());
 
                 while (a < b) {
 
-                    var c = a !== currentDate.month() ? '' : ' class="current"';
+                    var c = a.format('MM-YYYY') !== currentDate.format('MM-YYYY') ? '' : ' class="current"';
 
-                    date.month(a);
-                    html += '<a data-month="' + a + '"' + c + '>' + date.format('MMM') + '</a>';
-                    a++;
+                    html += '<a data-month="' + a.month() + '"' + c + '>' + a.format('MMM') + '</a>';
+                    a.add('M', 1);
                 }
 
                 body.html(html);
@@ -96,7 +94,12 @@
 
             };
 
-            var levels = ['year', 'month', 'day'];
+            var args = [
+                {years: 12},
+                {years: 1},
+                {months: 1}
+            ];
+
             var renderer = [renderYears, renderMonths, renderDays];
 
             var render = function() {
@@ -106,13 +109,13 @@
             
             next.click(function() {
 
-                showedDate.add(levels[level], 12);
+                showedDate.add(args[level]);
                 render();
             });
 
             prev.click(function() {
 
-                showedDate.subtract(levels[level], 12);
+                showedDate.subtract(args[level]);
                 render();
             });
 
@@ -133,4 +136,4 @@
             render();
         });
     };
-})(jQuery, moment);
+})(jQuery);
