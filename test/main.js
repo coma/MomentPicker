@@ -78,4 +78,74 @@ test('basic', function() {
     strictEqual(months.last().text(), 'Dec', 'Last month is december.');
     ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
     equal(current.text(), date.year(), 'Current year shows the year.');
+
+    months.eq(2).click();
+    date.month(2);
+    var week = body.children('div.week');
+    var month = body.children('div.month');
+
+    ok(week.length === 1, 'Body has week days.');
+    strictEqual(week.children().length, 7, 'Week has 7 days.');
+    ok(month.length === 1, 'Body has month days.');
+    strictEqual(month.children().length, 42, '42 month days are shown.');
+    strictEqual(current.text(), date.format('MMMM YYYY'), 'Current month-year is correct.');
+    ok(month.find('.current').text() === date.format('DD'), 'The current day has the current class.');
+
+    next.click().click();
+    week = body.children('div.week');
+    month = body.children('div.month');
+    date.add('M', 2);
+
+    ok(week.length === 1, 'Body has week days.');
+    strictEqual(week.children().length, 7, 'Week has 7 days.');
+    ok(month.length === 1, 'Body has month days.');
+    strictEqual(month.children().length, 42, '42 month days are shown.');
+    ok(month.children('.current').length === 0, 'The current day is not here.');
+
+    prev.click().click();
+    week = body.children('div.week');
+    month = body.children('div.month');
+    date.subtract('M', 2);
+
+    ok(week.length === 1, 'Body has week days.');
+    strictEqual(week.children().length, 7, 'Week has 7 days.');
+    ok(month.length === 1, 'Body has month days.');
+    strictEqual(month.children().length, 42, '42 month days are shown.');
+    strictEqual(current.text(), date.format('MMMM YYYY'), 'Current month-year is correct.');
+    ok(month.find('.current').text() === date.format('DD'), 'The current day has the current class.');
+
+    next.click();
+    var day = body.find('div.month > a:eq(7)');
+    date = day.data('day');
+    day.click();
+
+    ok(api.val().format('D-M-YYYY') === date, 'The selected date is correct.');
+
+    current.click();
+    months = body.children();
+    date = api.val();
+
+    strictEqual(months.length, 12, 'Body has 12 months.');
+    strictEqual(months.first().text(), 'Jan', 'First month is january.');
+    strictEqual(months.last().text(), 'Dec', 'Last month is december.');
+    ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
+    equal(current.text(), date.year(), 'Current year shows the year.');
+
+    current.click();
+    years = body.children();
+
+    strictEqual(years.length, 12, 'Body has 12 years.');
+    equal(years.first().text(), date.year(), 'First year is the current year.');
+    equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year.');
+    ok(years.first().hasClass('current'), 'The current year has the current class.');
+    strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
+
+    current.click();
+    years = body.children();
+
+    strictEqual(years.length, 12, 'Body has 12 years.');
+    equal(years.first().text(), date.year(), 'First year is the current year.');
+    equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year.');
+    ok(years.first().hasClass('current'), 'The current year has the current class.');
+    strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 });

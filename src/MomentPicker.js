@@ -80,9 +80,9 @@
 
                 while (a < b) {
 
-                    var c = a.format('MM-YYYY') !== currentDate.format('MM-YYYY') ? '' : ' class="current"';
+                    var c = a.format('M-YYYY') !== currentDate.format('M-YYYY') ? '' : ' class="current"';
 
-                    html += '<a data-month="' + a.month() + '"' + c + '>' + a.format('MMM') + '</a>';
+                    html += '<a data-month="' + a.format('M-YYYY') + '"' + c + '>' + a.format('MMM') + '</a>';
                     a.add('M', 1);
                 }
 
@@ -91,7 +91,35 @@
 
             var renderDays = function() {
 
+                var a = showedDate.clone().startOf('w');
+                var b = a.clone().add('w', 1);
+                var html = '<div class="week">';
 
+                currentLevel.text(showedDate.format('MMMM YYYY'));
+
+                while (a < b) {
+
+                    html += '<span>' + a.format('dd') + '</span>';
+                    a.add('d', 1);
+                }
+
+                html += '</div>';
+
+                a = showedDate.clone().startOf('M').startOf('w');
+                b = a.clone().add('d', 42);
+                html += '<div class="month">';
+
+                while (a < b) {
+
+                    var c = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY') ? '' : ' class="current"';
+
+                    html += '<a data-day="' + a.format('D-M-YYYY') + '"' + c + '>' + a.date() + '</a>';
+                    a.add('d', 1);
+                }
+
+                html += '</div>';
+
+                body.html(html);
             };
 
             var args = [
@@ -119,11 +147,33 @@
                 render();
             });
 
+            currentLevel.click(function() {
+
+                level = Math.max(0, --level);
+                render();
+            });
+
             body.on('click', '[data-year]', function() {
 
                 currentDate.year($(this).data('year'));
                 showedDate = currentDate.clone();
                 level = 1;
+                render();
+            });
+
+            body.on('click', '[data-month]', function() {
+
+                var date = moment($(this).data('month'), 'M-YYYY');
+                currentDate.month(date.month()).year(date.year());
+                showedDate = currentDate.clone();
+                level = 2;
+                render();
+            });
+
+            body.on('click', '[data-day]', function() {
+
+                currentDate = moment($(this).data('day'), 'D-M-YYYY');
+                showedDate = currentDate.clone();
                 render();
             });
 
