@@ -1,61 +1,63 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" >
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="chrome=1">
-        <title>Momentpicker by coma</title>
-        <link rel="stylesheet" href="stylesheets/styles.css">
-        <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-        <link rel="stylesheet" href="stylesheets/MomentPicker.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <!--[if lt IE 9]>
-        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MomentPicker</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.2/css/normalize.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.2/css/foundation.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="assets/MomentPicker.css">
+        <link rel="stylesheet" href="assets/style.css">
     </head>
     <body>
-        <div class="wrapper">
-            <header>
-                <h1>Momentpicker</h1>
-                <p>A datepicker based on Moment.js and jQuery</p>
-                <p class="view">
-                    <a href="https://github.com/coma/MomentPicker">View the Project on GitHub <small>coma/MomentPicker</small></a>
-                </p>
-                <ul>
-                    <li>
-                        <a href="https://github.com/coma/MomentPicker/zipball/master">Download <strong>ZIP File</strong></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/coma/MomentPicker/tarball/master">Download <strong>TAR Ball</strong></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/coma/MomentPicker">View On <strong>GitHub</strong></a>
+        <header class="top-bar docs-bar sticky">
+            <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name">
+                        <h1>
+                            <a href="/">MomentPicker</a>
+                        </h1>
                     </li>
                 </ul>
-            </header>
-            <section>
-                <h3>Basic usage</h3>
-                <p>More to come:</p>
-                <pre>
-                    <code>
-                    $(function() {
+                <section class="top-bar-section">
+                    <ul class="right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="https://github.com/coma/MomentPicker/zipball/master"><span class="fa fa-lg fa-download"></span> Zip</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="https://github.com/coma/MomentPicker/tarball/master"><span class="fa fa-lg fa-download"></span> Tar</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="https://github.com/coma/MomentPicker"><span class="fa fa-lg fa-github"></span> GitHub</a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </header>
+        <section>
+            <h1>MomentPicker<br/>
+            <small>A datepicker based on Moment.js and jQuery</small></h1>
+            <h2>Basic usage</h2>
+            {% highlight javascript %}
+            $(function() {
 
-                        $('#basic').MomentPicker();
-                    });
-                    </code>
-                </pre>
-                <div id="basic" class="picker"></div>
-            </section>
-            <footer>
-                <p>This project is maintained by <a href="https://github.com/coma">coma</a></p>
-                <p>
-                    <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
-                </p>
-            </footer>
-        </div>
-        <script src="javascripts/scale.fix.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+                $('#basic').MomentPicker();
+            });
+            {% endhighlight %}
+            <div id="basic" class="picker"></div>
+        </section>
+        <footer>
+            <h4>This project is maintained by <a href="https://github.com/coma">coma</a>
+            <br/><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></h4>
+        </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="javascripts/MomentPicker.min.js"></script>
-        <script src="javascripts/main.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.2/js/foundation.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+        <script src="assets/MomentPicker.min.js"></script>
+        <script src="assets/script.js"></script>
     </body>
 </html>
