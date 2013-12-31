@@ -5,13 +5,35 @@
 
 @import url(http://fonts.googleapis.com/css?family=Inder);
 
-div.picker {
-  width: 20em;
+body {
   font-family: Inder, Arial, Helvetica, sans-serif;
+  background-color: #F0F2F5;
+}
+
+div.picker {
+  width: 20rem;
   color: #34495e;
+  -webkit-: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  border-radius: 4px;
+  overflow: hidden;
+  @include box-shadow(0 -4px 0 rgba(0, 0, 0, 0.15) inset, 0 4px 0 rgba(0, 0, 0, 0.12));
+
+  * {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+
+  *:focus {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline: none;
+  }
 
   a {
     text-decoration: none;
+    cursor: pointer;
   }
 
   div:after {
@@ -22,33 +44,41 @@ div.picker {
 
   div.header {
     position: relative;
+    font-size: 1.5em;
     height: 2em;
     line-height: 2em;
-    margin: 0 0 .5em 0;
+    border-bottom: 4px solid #5BA0D0;
+    color: #fff;
+    background-color: #4FC1E9;
 
     a {
       display: block;
       position: absolute;
       top: 0;
+      bottom: 0;
       text-align: center;
 
       &.next, &.prev {
-        width: 0;
-        border: 1em solid transparent;
+        width: 2em;
       }
 
       &.next {
         right: 0;
-        border-left-color: #5BA0D0;
+
+        &:after {
+          content: ">";
+        }
       }
 
       &.prev {
         left: 0;
-        border-right-color: #5BA0D0;
+
+        &:before {
+          content: "<";
+        }
       }
 
       &.current {
-        bottom: 0;
         right: 2em;
         left: 2em;
       }
@@ -56,24 +86,42 @@ div.picker {
   }
 
   div.body {
+    position: relative;
+    height: 15rem;
+    color: #A4AEB9;
+    background-color: #fff;
+
+    div.week {
+      color: #4FC1E9;
+      background-color: #F6F8FA;
+
+      span {
+        line-height: 2em;
+        width: calc(100% / 7);
+      }
+    }
+
+    div.month {
+      a, span {
+        line-height: calc(13em / 6);
+        width: calc(100% / 7);
+      }
+    }
 
     .current {
-      color: #fff;
-      background-color: #5BA0D0;
+      color: #4FC1E9;
     }
 
     a, span {
       @include box-sizing(border-box);
       display: block;
       float: left;
-      text-align: right;
-      vertical-align: bottom;
+      text-align: center;
     }
 
     [data-year], [data-month] {
-      width: 5em;
-      height: 5em;
-      padding: 3.5em .5em 0 0;
+      width: 25%;
+      line-height: 5em;
     }
   }
 }

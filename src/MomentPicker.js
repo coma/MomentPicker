@@ -99,7 +99,7 @@
 
                 while (a < b) {
 
-                    html += '<span>' + a.format('dd') + '</span>';
+                    html += '<span>' + a.format('ddd') + '</span>';
                     a.add('d', 1);
                 }
 
