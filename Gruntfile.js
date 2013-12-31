@@ -72,6 +72,10 @@ module.exports = function(grunt) {
             css: {
                 files: ['src/*.scss'],
                 tasks: ['compass:dev']
+            },
+            js: {
+                files: ['src/*.js'],
+                tasks: ['copy:dev']
             }
         },
         open: {
