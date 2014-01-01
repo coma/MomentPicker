@@ -1,0 +1,5 @@
+name: MomentPicker
+markdown: redcarpet
+pygments: true
+kramdown:
+  input: GFM

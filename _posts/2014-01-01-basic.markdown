@@ -1,0 +1,14 @@
+---
+layout: post
+title:  Basic Usage
+js: [basic]
+---
+
+```javascript
+$(function() {
+	
+	$('#basic').MomentPicker();
+});
+```
+
+<div id="basic" class="picker"></div>

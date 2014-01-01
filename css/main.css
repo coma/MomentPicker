@@ -1,0 +1,97 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+a {
+  color: #4FC1E9;
+  text-decoration: none;
+}
+
+small {
+  font-size: .7em;
+  font-weight: normal;
+}
+
+h1 {
+  margin: 0;
+  height: 2em;
+  line-height: 1em;
+  font-size: 2em;
+}
+
+:first-child {
+  margin-top: 0;
+}
+
+:last-child {
+  margin-bottom: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Droid Sans, Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: #F0F2F5;
+}
+
+header,
+section,
+footer {
+  padding: 15px;
+}
+
+footer {
+  text-align: center;
+  margin: 2em 0 0 0;
+}
+
+nav a {
+  display: block;
+  margin: 0 0 .5em 0;
+}
+
+/* Top Bar */
+
+header {
+  font-size: .8rem;
+  position: relative;
+  color: #fff;
+  background-color: #333;
+}
+
+header > nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+header > nav:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+header > nav a {
+  display: block;
+  float: left;
+  padding: 15px;
+  line-height: 2.5em;
+  font-size: 1.6em;
+}
+
+/* Code Highlighting */
+
+.highlight {
+  padding: .6em;
+  margin: 1em 0;
+  overflow: auto;
+  background: #333;
+  border-radius: 4px;
+}
+
+pre, code {
+  white-space: pre;
+  margin: 0;
+  padding: 0;
+  font-family: Droid Sans Mono, sans-serif;
+}

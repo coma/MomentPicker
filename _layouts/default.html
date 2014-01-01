@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ page.title }}</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/MomentPicker.css">
+        <link rel="stylesheet" href="/css/syntax.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/">MomentPicker</a><br/>
+                <small>A datepicker based on Moment.js and jQuery</small>
+            </h1>
+            <nav>
+                <a href="https://github.com/coma/MomentPicker/zipball/master"><span class="fa fa-lg fa-download"></span> Zip</a>
+                <a href="https://github.com/coma/MomentPicker/tarball/master"><span class="fa fa-lg fa-download"></span> Tar</a>
+                <a href="https://github.com/coma/MomentPicker"><span class="fa fa-lg fa-github"></span> GitHub</a>
+            </nav>
+        </header>
+        <section>
+          {{ content }}
+        </section>
+        <footer>
+            <h4>This project is maintained by <a href="https://github.com/coma">coma</a>
+            <br/><small>Hosted on GitHub Pages</small></h4>
+        </footer>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+        <script src="/js/MomentPicker.min.js"></script>
+        {% for js in page.js %}
+        <script src="/js/{{ js }}.js"></script>
+        {% endfor %}
+    </body>
+</html>
