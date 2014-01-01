@@ -13,10 +13,11 @@ body {
 div.picker {
   width: 20rem;
   color: #34495e;
-  -webkit-: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  -o-user-select: none;
   user-select: none;
   border-radius: 4px;
   overflow: hidden;
@@ -29,6 +30,10 @@ div.picker {
   *:focus {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     outline: none;
+  }
+  
+  a, span {
+    color: #A4AEB9;
   }
 
   a {
@@ -48,7 +53,6 @@ div.picker {
     height: 2em;
     line-height: 2em;
     border-bottom: 4px solid #5BA0D0;
-    color: #fff;
     background-color: #4FC1E9;
 
     a {
@@ -57,6 +61,7 @@ div.picker {
       top: 0;
       bottom: 0;
       text-align: center;
+      color: #fff;
 
       &.next, &.prev {
         width: 2em;
