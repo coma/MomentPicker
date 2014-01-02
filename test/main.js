@@ -89,7 +89,7 @@ test('basic', function() {
     ok(month.length === 1, 'Body has month days.');
     strictEqual(month.children().length, 42, '42 month days are shown.');
     strictEqual(current.text(), date.format('MMMM YYYY'), 'Current month-year is correct.');
-    ok(month.find('.current').text() === date.format('DD'), 'The current day has the current class.');
+    ok(month.find('.current').text() === date.format('D'), 'The current day has the current class.');
 
     next.click().click();
     week = body.children('div.week');
@@ -112,7 +112,7 @@ test('basic', function() {
     ok(month.length === 1, 'Body has month days.');
     strictEqual(month.children().length, 42, '42 month days are shown.');
     strictEqual(current.text(), date.format('MMMM YYYY'), 'Current month-year is correct.');
-    ok(month.find('.current').text() === date.format('DD'), 'The current day has the current class.');
+    ok(month.find('.current').text() === date.format('D'), 'The current day has the current class.');
 
     next.click();
     var day = body.find('div.month > a:eq(7)');
