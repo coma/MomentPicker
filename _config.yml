@@ -1,5 +1,7 @@
 name: MomentPicker
 markdown: redcarpet
 pygments: true
+safe: true
+lsi: false
 kramdown:
   input: GFM
