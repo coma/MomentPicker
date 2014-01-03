@@ -1,5 +1,5 @@
 name: MomentPicker
-permalink: /:categories/:title.html
+permalink: :categories/:title.html
 pygments: true
 url: /MomentPicker
 markdown: redcarpet
