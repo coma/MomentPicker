@@ -2,10 +2,11 @@
 layout: default
 category: homepage
 title: MomentPicker
+root: /MomentPicker
 ---
 
 <nav>
 	{% for post in site.posts %}
-	<a href="{{ post.url }}"><span class="fa fa-lg fa-code"> {{ post.title }}</a>
+	<a href="{{ site.url }}/{{ post.url }}"><span class="fa fa-lg fa-code"> {{ post.title }}</a>
 	{% endfor %}
 </nav>
