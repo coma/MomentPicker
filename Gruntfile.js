@@ -15,7 +15,8 @@ module.exports = function(grunt) {
             all: ['test/**/*.html']
         },
         clean  : {
-            default: ['.sass-cache', '.temp', 'dist', 'dev/tmp']
+            dev: ['.sass-cache', '.temp', 'dev/tmp'],
+            dist: ['dist']
         },
         copy: {
             dev: {
@@ -93,7 +94,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('dev', [
-        'clean',
+        'clean:dev',
         'copy:dev',
         'compass:dev',
         'connect:dev',
@@ -102,7 +103,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('dist', [
-        'clean',
+        'clean:dist',
         'uglify:dist',
         'compass:dist'
     ]);
