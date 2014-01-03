@@ -15,14 +15,14 @@ module.exports = function(grunt) {
             all: ['test/**/*.html']
         },
         clean  : {
-            default: ['.sass-cache', '.temp', 'dist']
+            default: ['.sass-cache', '.temp', 'dist', 'dev/tmp']
         },
         copy: {
             dev: {
                 files: [
                     {
                         expand : true,
-                        dest   : 'dev',
+                        dest   : 'dev/tmp',
                         src    : [
                             'src/*.js',
                             'bower_components/**'
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
             dev : {
                 options: {
                     sassDir    : 'src',
-                    cssDir     : 'dev/src',
+                    cssDir     : 'dev/tmp/src',
                     environment: 'development',
                     outputStyle: 'expanded'
                 }
@@ -93,6 +93,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('dev', [
+        'clean',
         'copy:dev',
         'compass:dev',
         'connect:dev',
