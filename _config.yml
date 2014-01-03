@@ -2,3 +2,5 @@ name: MomentPicker
 permalink: /:categories/:title.html
 pygments: true
 url: /MomentPicker
+kramdown:
+  input: GFM
