@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ page.title }}</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-        <link rel="stylesheet" href="{{ site.url }}/css/MomentPicker.css">
-        <link rel="stylesheet" href="{{ site.url }}/css/syntax.css">
-        <link rel="stylesheet" href="{{ site.url }}/css/main.css">
+        <link rel="stylesheet" href="{{ site.baseurl }}/css/MomentPicker.css">
+        <link rel="stylesheet" href="{{ site.ubaseurlrl }}/css/syntax.css">
+        <link rel="stylesheet" href="{{ site.ubaseurlrl }}/css/main.css">
     </head>
     <body>
         <header>
             <h1>
-                <a href="{{ site.url }}">MomentPicker</a><br/>
+                <a href="{{ site.baseurl }}">MomentPicker</a><br/>
                 <small>A datepicker based on Moment.js and jQuery</small>
             </h1>
             <nav>
@@ -31,9 +31,9 @@
         </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
-        <script src="{{ site.url }}/js/MomentPicker.min.js"></script>
+        <script src="{{ site.baseurl }}/js/MomentPicker.min.js"></script>
         {% for js in page.js %}
-        <script src="{{ site.url }}/js/{{ js }}.js"></script>
+        <script src="{{ site.baseurl }}/js/{{ js }}.js"></script>
         {% endfor %}
     </body>
 </html>
