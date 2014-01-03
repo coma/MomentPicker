@@ -1,7 +1,3 @@
 name: MomentPicker
-markdown: redcarpet
+permalink: /:categories/:title.html
 pygments: true
-safe: true
-lsi: false
-kramdown:
-  input: GFM
