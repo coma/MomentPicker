@@ -6,6 +6,6 @@ title: MomentPicker
 
 <nav>
 	{% for post in site.posts %}
-	<a href="{{ post.url }}"><span class="fa fa-lg fa-code"> {{ post.title }}</a>
+	<a href="{{ site.baseurl }}{{ post.url }}"><span class="fa fa-lg fa-code"> {{ post.title }}</a>
 	{% endfor %}
 </nav>
