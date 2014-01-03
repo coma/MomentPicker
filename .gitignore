@@ -3,4 +3,4 @@ bower_components
 .temp
 .sass-cache
 .nodemonignore
-/dev
+/dev/tmp
