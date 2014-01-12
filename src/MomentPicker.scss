@@ -1,7 +1,6 @@
 @charset 'UTF-8';
 
 @import "compass/css3";
-@import "compass/css3/transform";
 
 @import url(http://fonts.googleapis.com/css?family=Inder);
 
@@ -65,21 +64,33 @@ div.picker {
 
       &.next, &.prev {
         width: 2em;
+        overflow: hidden;
+
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: .5em;
+          border: .5em solid transparent;
+        }
       }
 
       &.next {
         right: 0;
 
         &:after {
-          content: ">";
+          left: 1em;
+          border-left-color: #fff;
         }
       }
 
       &.prev {
         left: 0;
 
-        &:before {
-          content: "<";
+        &:after {
+          border-right-color: #fff;
         }
       }
 
