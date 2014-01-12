@@ -181,8 +181,7 @@
 
             body.on('click', '[data-year]', function() {
 
-                currentDate.year($(this).data('year'));
-                showedDate = currentDate.clone();
+                showedDate.year($(this).data('year'));
                 level = 1;
                 render();
             });
@@ -190,8 +189,7 @@
             body.on('click', '[data-month]', function() {
 
                 var date = moment($(this).data('month'), 'M-YYYY');
-                currentDate.month(date.month()).year(date.year());
-                showedDate = currentDate.clone();
+                showedDate.month(date.month()).year(date.year());
                 level = 2;
                 render();
             });
