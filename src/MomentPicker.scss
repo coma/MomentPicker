@@ -107,6 +107,15 @@ div.picker {
     color: #A4AEB9;
     background-color: #fff;
 
+    .current {
+      color: #fff;
+      background-color: #4FC1E9;
+    }
+
+    span {
+      background-color: #eee;
+    }
+
     div.week {
       color: #4FC1E9;
       background-color: #F6F8FA;
@@ -114,18 +123,16 @@ div.picker {
       span {
         line-height: 2em;
         width: (100% / 7);
+        background-color: transparent;
       }
     }
 
     div.month {
+
       a, span {
         line-height: (13em / 6);
         width: (100% / 7);
       }
-    }
-
-    .current {
-      color: #4FC1E9;
     }
 
     a, span {

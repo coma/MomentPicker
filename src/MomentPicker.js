@@ -40,19 +40,69 @@
             var prev = header.children('a.prev');
             var currentLevel = header.children('a.current');
 
-            var allowed = function(date) {
+            var dayBeforeMin,
+                dayAfterMax,
+                monthBeforeMin,
+                monthAfterMax,
+                yearBeforeMin,
+                yearAfterMax = function() {
 
-                if (moment.isMoment(settings.min) && date < settings.min.startOf('day')) {
+                return false;
+            };
 
-                    return false;
-                }
+            if (settings.hasOwnProperty('min')) {
 
-                if (moment.isMoment(settings.max) && date > settings.max.startOf('day')) {
+                settings.min = moment(settings.min).startOf('day');
 
-                    return false;
-                }
+                yearBeforeMin = function(year) {
 
-                return true;
+                    return year < settings.min.year();
+                };
+
+                monthBeforeMin = function(date) {
+
+                    return date.clone().startOf('month') < settings.min.clone().startOf('month');
+                };
+
+                dayBeforeMin = function(date) {
+
+                    return date < settings.min;
+                };
+            }
+
+            if (settings.hasOwnProperty('max')) {
+
+                settings.max = moment(settings.max).startOf('day');
+
+                yearAfterMax = function(year) {
+
+                    return year > settings.max.year();
+                };
+
+                monthAfterMax = function(date) {
+
+                    return date.clone().endOf('month') > settings.max.clone().endOf('month');
+                };
+
+                dayAfterMax = function(date) {
+
+                    return date > settings.max;
+                };
+            }
+
+            var allowedYear = function(year) {
+
+                return !yearBeforeMin(year) && !yearAfterMax(year);
+            };
+
+            var allowedDay = function(date) {
+
+                return !dayBeforeMin(date) && !dayAfterMax(date);
+            };
+
+            var allowedMonth = function(date) {
+
+                return !monthBeforeMin(date) && !monthAfterMax(date);
             };
 
             var val = function() {
@@ -65,7 +115,7 @@
 
                         date.startOf('day');
 
-                        if (allowed(date)) {
+                        if (allowedDay(date)) {
 
                             currentDate = date;
                         }
@@ -87,9 +137,15 @@
 
                 while (a < b) {
 
-                    var c = a !== currentDate.year() ? '' : ' class="current"';
+                    var classes = a !== currentDate.year()
+                        ? []
+                        : ['current'];
 
-                    html += '<a data-year="' + a + '"' + c + '>' + a + '</a>';
+                    var type = allowedYear(a)
+                        ? 'a'
+                        : 'span';
+
+                    html += '<' + type + ' data-year="' + a + '" class="' + classes.join(' ') + '">' + a + '</' + type + '>';
                     a++;
                 }
 
@@ -106,9 +162,15 @@
 
                 while (a < b) {
 
-                    var c = a.format('M-YYYY') !== currentDate.format('M-YYYY') ? '' : ' class="current"';
+                    var classes = a.format('M-YYYY') !== currentDate.format('M-YYYY')
+                        ? []
+                        : ['current'];
 
-                    html += '<a data-month="' + a.format('M-YYYY') + '"' + c + '>' + a.format('MMM') + '</a>';
+                    var type = allowedMonth(a)
+                        ? 'a'
+                        : 'span';
+
+                    html += '<' + type + ' data-month="' + a.format('M-YYYY') + '" class="' + classes.join(' ') + '">' + a.format('MMM') + '</' + type + '>';
                     a.add('M', 1);
                 }
 
@@ -137,9 +199,15 @@
 
                 while (a < b) {
 
-                    var c = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY') ? '' : ' class="current"';
+                    var classes = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY')
+                        ? []
+                        : ['current'];
 
-                    html += '<a data-day="' + a.format('D-M-YYYY') + '"' + c + '>' + a.date() + '</a>';
+                    var type = allowedDay(a)
+                        ? 'a'
+                        : 'span';
+
+                    html += '<' + type + ' data-day="' + a.format('D-M-YYYY') + '" class="' + classes.join(' ') + '">' + a.date() + '</' + type + '>';
                     a.add('d', 1);
                 }
 
@@ -179,14 +247,14 @@
                 render();
             });
 
-            body.on('click', '[data-year]', function() {
+            body.on('click', 'a[data-year]', function() {
 
                 showedDate.year($(this).data('year'));
                 level = 1;
                 render();
             });
 
-            body.on('click', '[data-month]', function() {
+            body.on('click', 'a[data-month]', function() {
 
                 var date = moment($(this).data('month'), 'M-YYYY');
                 showedDate.month(date.month()).year(date.year());
@@ -194,7 +262,7 @@
                 render();
             });
 
-            body.on('click', '[data-day]', function() {
+            body.on('click', 'a[data-day]', function() {
 
                 currentDate = moment($(this).data('day'), 'D-M-YYYY');
                 showedDate = currentDate.clone();
