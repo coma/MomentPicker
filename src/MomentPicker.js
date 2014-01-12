@@ -40,6 +40,21 @@
             var prev = header.children('a.prev');
             var currentLevel = header.children('a.current');
 
+            var allowed = function(date) {
+
+                if (moment.isMoment(settings.min) && date < settings.min.startOf('day')) {
+
+                    return false;
+                }
+
+                if (moment.isMoment(settings.max) && date > settings.max.startOf('day')) {
+
+                    return false;
+                }
+
+                return true;
+            };
+
             var val = function() {
 
                 if (arguments.length > 0) {
@@ -48,7 +63,12 @@
 
                     if (moment.isMoment(date)) {
 
-                        currentDate = date.startOf('day');
+                        date.startOf('day');
+
+                        if (allowed(date)) {
+
+                            currentDate = date;
+                        }
                     }
 
                     return api;
