@@ -40,15 +40,17 @@
             var prev = header.children('a.prev');
             var currentLevel = header.children('a.current');
 
-            var dayBeforeMin,
-                dayAfterMax,
-                monthBeforeMin,
-                monthAfterMax,
-                yearBeforeMin,
-                yearAfterMax = function() {
+            var falsy = function() {
 
                 return false;
             };
+
+            var dayBeforeMin = falsy,
+                dayAfterMax = falsy,
+                monthBeforeMin = falsy,
+                monthAfterMax = falsy,
+                yearBeforeMin = falsy,
+                yearAfterMax = falsy;
 
             if (settings.hasOwnProperty('min')) {
 
@@ -137,13 +139,8 @@
 
                 while (a < b) {
 
-                    var classes = a !== currentDate.year()
-                        ? []
-                        : ['current'];
-
-                    var type = allowedYear(a)
-                        ? 'a'
-                        : 'span';
+                    var classes = a !== currentDate.year() ? [] : ['current'];
+                    var type = allowedYear(a) ? 'a' : 'span';
 
                     html += '<' + type + ' data-year="' + a + '" class="' + classes.join(' ') + '">' + a + '</' + type + '>';
                     a++;
@@ -162,13 +159,8 @@
 
                 while (a < b) {
 
-                    var classes = a.format('M-YYYY') !== currentDate.format('M-YYYY')
-                        ? []
-                        : ['current'];
-
-                    var type = allowedMonth(a)
-                        ? 'a'
-                        : 'span';
+                    var classes = a.format('M-YYYY') !== currentDate.format('M-YYYY') ? [] : ['current'];
+                    var type = allowedMonth(a) ? 'a' : 'span';
 
                     html += '<' + type + ' data-month="' + a.format('M-YYYY') + '" class="' + classes.join(' ') + '">' + a.format('MMM') + '</' + type + '>';
                     a.add('M', 1);
@@ -199,13 +191,8 @@
 
                 while (a < b) {
 
-                    var classes = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY')
-                        ? []
-                        : ['current'];
-
-                    var type = allowedDay(a)
-                        ? 'a'
-                        : 'span';
+                    var classes = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY') ? [] : ['current'];
+                    var type = allowedDay(a) ? 'a' : 'span';
 
                     html += '<' + type + ' data-day="' + a.format('D-M-YYYY') + '" class="' + classes.join(' ') + '">' + a.date() + '</' + type + '>';
                     a.add('d', 1);
