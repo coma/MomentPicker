@@ -13,5 +13,5 @@ test('config', function() {
     var header = picker.children('div.header');
     var body = picker.children('div.body');
 
-    strictEqual(api.val().format(), date.format(), 'Current date is correct.');
+    strictEqual(api.val().format(), date.format(), 'Initial date is correct.');
 });
