@@ -11,10 +11,16 @@
             return plugin;
         }
 
+        var defaults = {
+            date: moment().startOf('day')
+        };
+
         return this.each(function() {
 
+            var settings = $.extend({}, defaults, options);
+
             var api;
-            var showedDate = moment().startOf('day');
+            var showedDate = settings.date;
             var currentDate = showedDate.clone();
             var picker = $(this);
             var level = 0;
