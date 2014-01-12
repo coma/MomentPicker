@@ -51,12 +51,9 @@ test('basic', function() {
     date.add('y', 2);
     var months = body.children();
 
-    strictEqual(api.val().format(), date.format(), 'Current date is correct.');
-
     strictEqual(months.length, 12, 'Body has 12 months.');
     strictEqual(months.first().text(), 'Jan', 'First month is january.');
     strictEqual(months.last().text(), 'Dec', 'Last month is december.');
-    ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
     equal(current.text(), date.year(), 'Current year shows the year.');
 
     next.click();
@@ -76,7 +73,6 @@ test('basic', function() {
     strictEqual(months.length, 12, 'Body has 12 months.');
     strictEqual(months.first().text(), 'Jan', 'First month is january.');
     strictEqual(months.last().text(), 'Dec', 'Last month is december.');
-    ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
     equal(current.text(), date.year(), 'Current year shows the year.');
 
     months.eq(2).click();
@@ -89,7 +85,6 @@ test('basic', function() {
     ok(month.length === 1, 'Body has month days.');
     strictEqual(month.children().length, 42, '42 month days are shown.');
     strictEqual(current.text(), date.format('MMMM YYYY'), 'Current month-year is correct.');
-    ok(month.find('.current').text() === date.format('D'), 'The current day has the current class.');
 
     next.click().click();
     week = body.children('div.week');
@@ -112,7 +107,6 @@ test('basic', function() {
     ok(month.length === 1, 'Body has month days.');
     strictEqual(month.children().length, 42, '42 month days are shown.');
     strictEqual(current.text(), date.format('MMMM YYYY'), 'Current month-year is correct.');
-    ok(month.find('.current').text() === date.format('D'), 'The current day has the current class.');
 
     next.click();
     var day = body.find('div.month > a:eq(7)');
