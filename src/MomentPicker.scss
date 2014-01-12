@@ -102,14 +102,14 @@ div.picker {
 
       span {
         line-height: 2em;
-        width: calc(100% / 7);
+        width: (100% / 7);
       }
     }
 
     div.month {
       a, span {
-        line-height: calc(13em / 6);
-        width: calc(100% / 7);
+        line-height: (13em / 6);
+        width: (100% / 7);
       }
     }
 
