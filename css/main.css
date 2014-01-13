@@ -95,3 +95,11 @@ pre, code {
   padding: 0;
   font-family: Droid Sans Mono, sans-serif;
 }
+
+a.travis {
+    overflow: hidden;
+    text-indent: 100px;
+    width: 80px;
+    height: 2.5em;
+    background: transparent url(https://travis-ci.org/coma/MomentPicker.png?branch=master) no-repeat center;
+}
