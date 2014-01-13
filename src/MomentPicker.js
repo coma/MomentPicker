@@ -50,46 +50,86 @@
                 monthBeforeMin = falsy,
                 monthAfterMax = falsy,
                 yearBeforeMin = falsy,
-                yearAfterMax = falsy;
+                yearAfterMax = falsy,
+                getMin = falsy,
+                getMax = falsy;
 
             if (settings.hasOwnProperty('min')) {
 
-                settings.min = moment(settings.min).startOf('day');
+                (function() {
 
-                yearBeforeMin = function(year) {
+                    if (settings.min instanceof Function) {
 
-                    return year < settings.min.year();
-                };
+                        getMin = settings.min;
 
-                monthBeforeMin = function(date) {
+                    } else {
 
-                    return date.clone().startOf('month') < settings.min.clone().startOf('month');
-                };
+                        var min = moment(settings.min);
 
-                dayBeforeMin = function(date) {
+                        if (moment.isMoment(min)) {
 
-                    return date < settings.min;
-                };
+                            min.startOf('day');
+                            getMin = function() {
+
+                                return min.clone();
+                            };
+                        }
+                    }
+
+                    yearBeforeMin = function(year) {
+
+                        return year < getMin().year();
+                    };
+
+                    monthBeforeMin = function(date) {
+
+                        return date.clone().startOf('month') < getMin().startOf('month');
+                    };
+
+                    dayBeforeMin = function(date) {
+
+                        return date < getMin();
+                    };
+                })();
             }
 
             if (settings.hasOwnProperty('max')) {
 
-                settings.max = moment(settings.max).startOf('day');
+                (function() {
 
-                yearAfterMax = function(year) {
+                    if (settings.max instanceof Function) {
 
-                    return year > settings.max.year();
-                };
+                        getMax = settings.max;
 
-                monthAfterMax = function(date) {
+                    } else {
 
-                    return date.clone().endOf('month') > settings.max.clone().endOf('month');
-                };
+                        var max = moment(settings.max);
 
-                dayAfterMax = function(date) {
+                        if (moment.isMoment(max)) {
 
-                    return date > settings.max;
-                };
+                            max.startOf('day');
+                            getMax = function() {
+
+                                return max.clone();
+                            };
+                        }
+                    }
+
+                    yearAfterMax = function(year) {
+
+                        return year > getMax().year();
+                    };
+
+                    monthAfterMax = function(date) {
+
+                        return date.clone().endOf('month') > getMax().endOf('month');
+                    };
+
+                    dayAfterMax = function(date) {
+
+                        return date > getMax();
+                    };
+                })();
             }
 
             var allowedYear = function(year) {
