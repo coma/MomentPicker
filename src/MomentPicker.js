@@ -23,7 +23,7 @@
             var showedDate = settings.date;
             var currentDate = showedDate.clone();
             var picker = $(this);
-            var level = 0;
+            var _level = 0;
 
             picker.html([
                 '<div class="header">',
@@ -228,11 +228,21 @@
                 a = showedDate.clone().startOf('M').startOf('w');
                 b = a.clone().add('d', 42);
                 html += '<div class="month">';
+                var isNext = false;
 
                 while (a < b) {
 
                     var classes = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY') ? [] : ['current'];
                     var type = allowedDay(a) ? 'a' : 'span';
+
+                    if (a.month() !== showedDate.month()) {
+
+                        classes.push(isNext ? 'next' : 'prev');
+
+                    } else {
+
+                        isNext = true;
+                    }
 
                     html += '<' + type + ' data-day="' + a.format('D-M-YYYY') + '" class="' + classes.join(' ') + '">' + a.date() + '</' + type + '>';
                     a.add('d', 1);
@@ -253,40 +263,42 @@
 
             var render = function() {
 
-                renderer[level]();
+                if (arguments.length > 0) {
+
+                    _level = arguments[0];
+                }
+
+                renderer[_level]();
             };
             
             next.click(function() {
 
-                showedDate.add(args[level]);
+                showedDate.add(args[_level]);
                 render();
             });
 
             prev.click(function() {
 
-                showedDate.subtract(args[level]);
+                showedDate.subtract(args[_level]);
                 render();
             });
 
             currentLevel.click(function() {
 
-                level = Math.max(0, --level);
-                render();
+                render(Math.max(0, --_level));
             });
 
             body.on('click', 'a[data-year]', function() {
 
                 showedDate.year($(this).data('year'));
-                level = 1;
-                render();
+                render(1);
             });
 
             body.on('click', 'a[data-month]', function() {
 
                 var date = moment($(this).data('month'), 'M-YYYY');
                 showedDate.month(date.month()).year(date.year());
-                level = 2;
-                render();
+                render(2);
             });
 
             body.on('click', 'a[data-day]', function() {
@@ -297,7 +309,10 @@
             });
 
             api = {
-                val: val
+                val: val,
+                renderYears: function () { render(0); },
+                renderMonths: function () { render(1); },
+                renderDays: function () { render(2); }
             };
 
             picker.data(pluginName, api);
