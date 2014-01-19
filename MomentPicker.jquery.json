@@ -1,0 +1,28 @@
+{
+    "name": "MomentPicker",
+    "title": "MomentPicker",
+    "description": "A datepicker based on Moment.js and jQuery.",
+    "keywords": [
+        "datepicker",
+        "momentjs"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "email": "eduardo@comakai.com",
+        "name": "Eduardo García Sanz",
+        "url": "http://www.comakai.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "bugs": "https://github.com/coma/MomentPicker/issues",
+    "homepage": "http://coma.github.io/MomentPicker/",
+    "docs": "http://coma.github.io/MomentPicker/",
+    "download": "https://github.com/coma/MomentPicker/zipball/master",
+    "dependencies": {
+        "jquery": ">=1.7"
+    }
+}
