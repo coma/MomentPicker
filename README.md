@@ -6,7 +6,9 @@ A datepicker based on Moment.js and jQuery
 How to use
 ----------
 
-Using moment picker is as simple as:
+This datepicker is easy to use you just can download with bower ```bower install MomentPicker``` or directly this package with git clone.
+
+My index.html
 
 Create a file called index.html and add the next code:
 ```html
