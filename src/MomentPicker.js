@@ -132,6 +132,13 @@
                 })();
             }
 
+            var emit = function(name) {
+
+                var event = $.Event(name);
+                event.api = api;
+                picker.trigger(event);
+            };
+
             var allowedYear = function(year) {
 
                 return !yearBeforeMin(year) && !yearAfterMax(year);
@@ -160,6 +167,9 @@
                         if (allowedDay(date)) {
 
                             currentDate = date;
+                            emit('pick');
+                            showedDate = currentDate.clone();
+                            render();
                         }
                     }
 
@@ -187,6 +197,7 @@
                 }
 
                 body.html(html);
+                emit('renderYears');
             };
 
             var renderMonths = function() {
@@ -207,6 +218,7 @@
                 }
 
                 body.html(html);
+                emit('renderMonths');
             };
 
             var renderDays = function() {
@@ -251,6 +263,7 @@
                 html += '</div>';
 
                 body.html(html);
+                emit('renderDays');
             };
 
             var args = [
@@ -269,6 +282,7 @@
                 }
 
                 renderer[_level]();
+                emit('render');
             };
             
             next.click(function() {
@@ -303,9 +317,7 @@
 
             body.on('click', 'a[data-day]', function() {
 
-                currentDate = moment($(this).data('day'), 'D-M-YYYY');
-                showedDate = currentDate.clone();
-                render();
+                val(moment($(this).data('day'), 'D-M-YYYY'));
             });
 
             api = {
@@ -317,6 +329,7 @@
 
             picker.data(pluginName, api);
 
+            emit('ready');
             render();
         });
     };
