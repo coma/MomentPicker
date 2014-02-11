@@ -151,4 +151,9 @@ div.picker {
       line-height: 5em;
     }
   }
+
+  &.top div.header a.current {
+    cursor: default;
+    pointer-events: none;
+  }
 }

@@ -12,7 +12,8 @@
         }
 
         var defaults = {
-            date: moment().startOf('day')
+            date    : moment().startOf('day'),
+            level   : 0
         };
 
         return this.each(function() {
@@ -23,7 +24,7 @@
             var showedDate = settings.date;
             var currentDate = showedDate.clone();
             var picker = $(this);
-            var _level = 0;
+            var _level = settings.level;
 
             picker.html([
                 '<div class="header">',
@@ -278,24 +279,34 @@
 
                 if (arguments.length > 0) {
 
-                    _level = arguments[0];
+                    _level = Math.max(arguments[0], settings.level);
+                }
+
+                picker.removeClass('top');
+
+                if (_level === settings.level) {
+
+                    picker.addClass('top');
                 }
 
                 renderer[_level]();
                 emit('render');
             };
-            
-            next.click(function() {
+
+            var showNext = function() {
 
                 showedDate.add(args[_level]);
                 render();
-            });
+            };
 
-            prev.click(function() {
+            var showPrev = function() {
 
                 showedDate.subtract(args[_level]);
                 render();
-            });
+            };
+            
+            next.click(showNext);
+            prev.click(showPrev);
 
             currentLevel.click(function() {
 
@@ -322,6 +333,8 @@
 
             api = {
                 val: val,
+                next: showNext,
+                prev: showPrev,
                 renderYears: function () { render(0); },
                 renderMonths: function () { render(1); },
                 renderDays: function () { render(2); }
