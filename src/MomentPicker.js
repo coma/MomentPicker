@@ -297,12 +297,14 @@
 
                 showedDate.add(args[_level]);
                 render();
+                emit('showNext');
             };
 
             var showPrev = function() {
 
                 showedDate.subtract(args[_level]);
                 render();
+                emit('showPrev');
             };
             
             next.click(showNext);
