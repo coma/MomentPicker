@@ -30,13 +30,21 @@ module.exports = function(grunt) {
                         ]
                     }
                 ]
+            },
+            dist: {
+                files: [
+                    {
+                        dest   : 'dist/MomentPicker.min.css',
+                        src    : '.temp/MomentPicker.css'
+                    }
+                ]
             }
         },
         compass: {
             dist: {
                 options: {
                     sassDir    : 'src',
-                    cssDir     : 'dist',
+                    cssDir     : '.temp',
                     environment: 'production',
                     outputStyle: 'compressed'
                 }
@@ -51,6 +59,9 @@ module.exports = function(grunt) {
             }
         },
         uglify : {
+            options: {
+                banner: '/*! <%= pkg.name %> v<%= pkg.version %> | <%= pkg.homepage %> | <%= pkg.license %> license */\n'
+            },
             dist: {
                 files: {
                     'dist/MomentPicker.min.js': ['src/MomentPicker.js']
@@ -105,6 +116,7 @@ module.exports = function(grunt) {
     grunt.registerTask('dist', [
         'clean:dist',
         'uglify:dist',
-        'compass:dist'
+        'compass:dist',
+        'copy:dist'
     ]);
 };
