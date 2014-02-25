@@ -24,7 +24,7 @@ test('basic', function() {
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is the current year.');
     equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year.');
-    ok(years.first().hasClass('current'), 'The current year has the current class.');
+    ok(years.first().hasClass('selected'), 'The current year has the current class.');
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     next.click();
@@ -34,7 +34,7 @@ test('basic', function() {
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is 12 years after the current year (next clicked).');
     equal(years.last().text(), date.year() + 11, 'Last year is 23 years after the current year (next clicked).');
-    ok(years.filter('.current').length === 0, 'The current year is not here.');
+    ok(years.filter('.selected').length === 0, 'The current year is not here.');
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     prev.click();
@@ -44,7 +44,7 @@ test('basic', function() {
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is the current year (prev clicked).');
     equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year (prev clicked).');
-    ok(years.first().hasClass('current'), 'The current year has the current class.');
+    ok(years.first().hasClass('selected'), 'The current year has the current class.');
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     years.eq(2).click();
@@ -63,7 +63,7 @@ test('basic', function() {
     strictEqual(months.length, 12, 'Body has 12 months.');
     strictEqual(months.first().text(), 'Jan', 'First month is january.');
     strictEqual(months.last().text(), 'Dec', 'Last month is december.');
-    ok(months.filter('.current').length === 0, 'The current month is not here.');
+    ok(months.filter('.selected').length === 0, 'The current month is not here.');
     equal(current.text(), date.year(), 'Current year shows the year.');
 
     prev.click();
@@ -95,7 +95,7 @@ test('basic', function() {
     strictEqual(week.children().length, 7, 'Week has 7 days.');
     ok(month.length === 1, 'Body has month days.');
     strictEqual(month.children().length, 42, '42 month days are shown.');
-    ok(month.children('.current').length === 0, 'The current day is not here.');
+    ok(month.children('.selected').length === 0, 'The current day is not here.');
 
     prev.click().click();
     week = body.children('div.week');
@@ -122,7 +122,7 @@ test('basic', function() {
     strictEqual(months.length, 12, 'Body has 12 months.');
     strictEqual(months.first().text(), 'Jan', 'First month is january.');
     strictEqual(months.last().text(), 'Dec', 'Last month is december.');
-    ok(months.filter('.current').text() === date.format('MMM'), 'The current month has the current class.');
+    ok(months.filter('.selected').text() === date.format('MMM'), 'The current month has the current class.');
     equal(current.text(), date.year(), 'Current year shows the year.');
 
     current.click();
@@ -131,7 +131,7 @@ test('basic', function() {
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is the current year.');
     equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year.');
-    ok(years.first().hasClass('current'), 'The current year has the current class.');
+    ok(years.first().hasClass('selected'), 'The current year has the current class.');
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 
     current.click();
@@ -140,6 +140,6 @@ test('basic', function() {
     strictEqual(years.length, 12, 'Body has 12 years.');
     equal(years.first().text(), date.year(), 'First year is the current year.');
     equal(years.last().text(), date.year() + 11, 'Last year is 11 years after the current year.');
-    ok(years.first().hasClass('current'), 'The current year has the current class.');
+    ok(years.first().hasClass('selected'), 'The current year has the current class.');
     strictEqual(current.text(), date.year() + ' - ' + (date.year() + 11), 'Current years shows first and last.');
 });

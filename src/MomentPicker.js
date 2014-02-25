@@ -1,6 +1,15 @@
 (function($, undefined) {
 
     var pluginName = 'MomentPicker';
+    var today = moment().startOf('day');
+    var defaults = {
+        date : today,
+        level: 0,
+        style: {
+            selected: 'selected',
+            current : 'current'
+        }
+    };
 
     $.fn[pluginName] = function(options) {
 
@@ -11,18 +20,12 @@
             return plugin;
         }
 
-        var defaults = {
-            date    : moment().startOf('day'),
-            level   : 0
-        };
-
         return this.each(function() {
 
-            var settings = $.extend({}, defaults, options);
-
             var api;
+            var settings = $.extend(true, {}, defaults, options);
             var showedDate = settings.date;
-            var currentDate = showedDate.clone();
+            var selectedDate = showedDate.clone();
             var picker = $(this);
             var _level = settings.level;
 
@@ -167,9 +170,9 @@
 
                         if (allowedDay(date)) {
 
-                            currentDate = date;
+                            selectedDate = date;
                             emit('pick');
-                            showedDate = currentDate.clone();
+                            showedDate = selectedDate.clone();
                             render();
                         }
                     }
@@ -177,7 +180,7 @@
                     return api;
                 }
 
-                return currentDate.clone();
+                return selectedDate.clone();
             };
 
             var renderYears = function() {
@@ -190,7 +193,18 @@
 
                 while (a < b) {
 
-                    var classes = a !== currentDate.year() ? [] : ['current'];
+                    var classes = [];
+
+                    if (a === today.year()) {
+
+                        classes.push(settings.style.current);
+                    }
+
+                    if (a === selectedDate.year()) {
+
+                        classes.push(settings.style.selected);
+                    }
+
                     var type = allowedYear(a) ? 'a' : 'span';
 
                     html += '<' + type + ' data-year="' + a + '" class="' + classes.join(' ') + '">' + a + '</' + type + '>';
@@ -211,7 +225,18 @@
 
                 while (a < b) {
 
-                    var classes = a.format('M-YYYY') !== currentDate.format('M-YYYY') ? [] : ['current'];
+                    var classes = [];
+
+                    if (a.format('M-YYYY') === today.format('M-YYYY')) {
+
+                        classes.push(settings.style.current);
+                    }
+
+                    if (a.format('M-YYYY') === selectedDate.format('M-YYYY')) {
+
+                        classes.push(settings.style.selected);
+                    }
+
                     var type = allowedMonth(a) ? 'a' : 'span';
 
                     html += '<' + type + ' data-month="' + a.format('M-YYYY') + '" class="' + classes.join(' ') + '">' + a.format('MMM') + '</' + type + '>';
@@ -245,7 +270,18 @@
 
                 while (a < b) {
 
-                    var classes = a.format('D-M-YYYY') !== currentDate.format('D-M-YYYY') ? [] : ['current'];
+                    var classes =  [];
+
+                    if (a.format('D-M-YYYY') === today.format('D-M-YYYY')) {
+
+                        classes.push(settings.style.current);
+                    }
+
+                    if (a.format('D-M-YYYY') === selectedDate.format('D-M-YYYY')) {
+
+                        classes.push(settings.style.selected);
+                    }
+
                     var type = allowedDay(a) ? 'a' : 'span';
 
                     if (a.month() !== showedDate.month()) {

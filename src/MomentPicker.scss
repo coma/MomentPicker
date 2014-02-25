@@ -108,6 +108,11 @@ div.picker {
     background-color: #fff;
 
     .current {
+      color: #A4AEB9;
+      background-color: #ffd;
+    }
+
+    .selected {
       color: #fff;
       background-color: #4FC1E9;
     }
