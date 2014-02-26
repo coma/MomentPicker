@@ -2,7 +2,7 @@
     "name"           : "MomentPicker",
     "description"    : "A datepicker based on Moment.js and jQuery",
     "homepage"       : "https://github.com/coma/MomentPicker",
-    "version"        : "1.2.1",
+    "version"        : "1.3.0",
     "license"        : "MIT",
     "private"        : false,
     "authors"        : [
