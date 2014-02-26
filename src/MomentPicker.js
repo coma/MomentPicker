@@ -58,17 +58,17 @@
                 getMin = falsy,
                 getMax = falsy;
 
-            if (settings.hasOwnProperty('min')) {
+            var setMin = function(o) {
 
-                (function() {
+                if (o instanceof Function) {
 
-                    if (settings.min instanceof Function) {
+                    getMin = o;
 
-                        getMin = settings.min;
+                } else {
 
-                    } else {
+                    (function() {
 
-                        var min = moment(settings.min);
+                        var min = moment(o);
 
                         if (moment.isMoment(min)) {
 
@@ -78,34 +78,41 @@
                                 return min.clone();
                             };
                         }
-                    }
+                    })();
+                }
 
-                    yearBeforeMin = function(year) {
+                yearBeforeMin = function(year) {
 
-                        return year < getMin().year();
-                    };
+                    return year < getMin().year();
+                };
 
-                    monthBeforeMin = function(date) {
+                monthBeforeMin = function(date) {
 
-                        return date.clone().startOf('month') < getMin().startOf('month');
-                    };
+                    return date.clone().startOf('month') < getMin().startOf('month');
+                };
 
-                    dayBeforeMin = function(date) {
+                dayBeforeMin = function(date) {
 
-                        return date < getMin();
-                    };
-                })();
-            }
+                    return date < getMin();
+                };
 
-            if (settings.hasOwnProperty('max')) {
+                var min = getMin();
 
-                (function() {
+                if (min > selectedDate) {
 
-                    if (settings.max instanceof Function) {
+                    val(min);
+                }
+            };
 
-                        getMax = settings.max;
+            var setMax = function() {
 
-                    } else {
+                if (settings.max instanceof Function) {
+
+                    getMax = settings.max;
+
+                } else {
+
+                    (function() {
 
                         var max = moment(settings.max);
 
@@ -117,24 +124,31 @@
                                 return max.clone();
                             };
                         }
-                    }
+                    })();
+                }
 
-                    yearAfterMax = function(year) {
+                yearAfterMax = function(year) {
 
-                        return year > getMax().year();
-                    };
+                    return year > getMax().year();
+                };
 
-                    monthAfterMax = function(date) {
+                monthAfterMax = function(date) {
 
-                        return date.clone().endOf('month') > getMax().endOf('month');
-                    };
+                    return date.clone().endOf('month') > getMax().endOf('month');
+                };
 
-                    dayAfterMax = function(date) {
+                dayAfterMax = function(date) {
 
-                        return date > getMax();
-                    };
-                })();
-            }
+                    return date > getMax();
+                };
+
+                var max = getMax();
+
+                if (max < selectedDate) {
+
+                    val(max);
+                }
+            };
 
             var emit = function(name) {
 
@@ -369,14 +383,50 @@
                 val(moment($(this).data('day'), 'D-M-YYYY'));
             });
 
-            api = {
-                val: val,
-                next: showNext,
-                prev: showPrev,
-                renderYears: function () { render(0); },
-                renderMonths: function () { render(1); },
-                renderDays: function () { render(2); }
+            var min = function() {
+
+                if (arguments.length > 0) {
+
+                    setMin(arguments[0]);
+
+                    return api;
+                }
+
+                return getMin();
             };
+
+            var max = function() {
+
+                if (arguments.length > 0) {
+
+                    setMax(arguments[0]);
+
+                    return api;
+                }
+
+                return getMax();
+            };
+
+            api = {
+                val         : val,
+                next        : showNext,
+                prev        : showPrev,
+                min         : min,
+                max         : max,
+                renderYears : function () { render(0); },
+                renderMonths: function () { render(1); },
+                renderDays  : function () { render(2); }
+            };
+
+            if (settings.hasOwnProperty('min')) {
+
+                setMin(settings.min);
+            }
+
+            if (settings.hasOwnProperty('max')) {
+
+                setMax(settings.max);
+            }
 
             picker.data(pluginName, api);
 
