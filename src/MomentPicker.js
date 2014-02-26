@@ -178,7 +178,7 @@
 
                     var date = moment(arguments[0]);
 
-                    if (moment.isMoment(date)) {
+                    if (date.isValid()) {
 
                         date.startOf('day');
 
