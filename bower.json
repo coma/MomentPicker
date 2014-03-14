@@ -1,5 +1,6 @@
 {
     "name"        : "MomentPicker",
+    "main"        : "src/MomentPicker.js",
     "version"     : "1.3.1",
     "license"     : "MIT",
     "homepage"    : "https://github.com/coma/MomentPicker",
