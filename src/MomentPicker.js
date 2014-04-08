@@ -101,20 +101,24 @@
                 if (min > selectedDate) {
 
                     val(min);
+
+                } else {
+
+                    render();
                 }
             };
 
-            var setMax = function() {
+            var setMax = function(o) {
 
-                if (settings.max instanceof Function) {
+                if (o instanceof Function) {
 
-                    getMax = settings.max;
+                    getMax = o;
 
                 } else {
 
                     (function() {
 
-                        var max = moment(settings.max);
+                        var max = moment(o);
 
                         if (moment.isMoment(max)) {
 
@@ -134,7 +138,7 @@
 
                 monthAfterMax = function(date) {
 
-                    return date.clone().endOf('month') > getMax().endOf('month');
+                    return date.clone().startOf('month') > getMax().startOf('month');
                 };
 
                 dayAfterMax = function(date) {
@@ -147,6 +151,10 @@
                 if (max < selectedDate) {
 
                     val(max);
+
+                } else {
+
+                    render();
                 }
             };
 
