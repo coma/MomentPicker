@@ -113,7 +113,8 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('dist', [
+    grunt.registerTask('default', [
+        'test',
         'clean:dist',
         'uglify:dist',
         'compass:dist',
