@@ -1,7 +1,9 @@
 MomentPicker [![Build Status](https://travis-ci.org/coma/MomentPicker.png?branch=master)](https://travis-ci.org/coma/MomentPicker)
 ============
 
-A datepicker based on Moment.js and jQuery
+A datepicker based on [Moment.js](http://momentjs.com/) and [jQuery](http://jquery.com/)
+
+You can [change the default language](http://momentjs.com/docs/#/i18n/) (english) and  even make it **RTL** ([with some css](http://stackoverflow.com/questions/23030959/switching-sidebar-when-using-rtl-direction/23037076#23037076)).
 
 How to use
 ----------
