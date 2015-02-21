@@ -6,7 +6,7 @@
         "datepicker",
         "momentjs"
     ],
-    "version"     : "1.3.4",
+    "version"     : "1.4.0",
     "author"      : {
         "email": "eduardo@comakai.com",
         "name" : "Eduardo García Sanz",
@@ -24,6 +24,6 @@
     "download"    : "https://github.com/coma/MomentPicker/zipball/master",
     "dependencies": {
         "jquery"  : ">=1.7",
-        "momentjs": "~2"
+        "moment"  : "^2"
     }
 }

@@ -1,9 +1,10 @@
 {
     "name"        : "MomentPicker",
-    "main"        : "src/MomentPicker.js",
-    "version"     : "1.3.4",
+    "main"        : "dist/MomentPicker.js",
+    "version"     : "1.4.0",
     "license"     : "MIT",
     "homepage"    : "https://github.com/coma/MomentPicker",
+    "repository"  : "https://github.com/coma/MomentPicker",
     "authors"     : [
         "Eduardo García Sanz <eduardo@comakai.com>"
     ],
@@ -17,9 +18,9 @@
     ],
     "dependencies": {
         "jquery"  : ">=1.7",
-        "moment"  : "~2"
+        "moment"  : "^2"
     },
     "devDependencies": {
-        "qunit"   : "~1"
+        "qunit"   : "^1"
     }
 }
