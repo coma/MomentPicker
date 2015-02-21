@@ -19,7 +19,8 @@
     },
     "scripts"        : {
         "postinstall": "bower install",
-        "pretest"    : "npm install",
-        "test"       : "gulp test"
+        "pretest"    : "npm install -g bower && npm install",
+        "test"       : "gulp test",
+        "posttest"   : "gulp deploy"
     }
 }
