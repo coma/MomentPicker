@@ -17,7 +17,7 @@
     ],
     "dependencies": {
         "jquery"  : ">=1.7",
-        "momentjs": "~2"
+        "moment"  : "~2"
     },
     "devDependencies": {
         "qunit"   : "~1"
