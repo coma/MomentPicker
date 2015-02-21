@@ -19,7 +19,7 @@
     },
     "scripts"        : {
         "postinstall": "bower install",
-        "pretest"    : "npm install -g bower && npm install",
+        "pretest"    : "npm install -g bower gulp && npm install",
         "test"       : "gulp test",
         "posttest"   : "gulp deploy"
     }
