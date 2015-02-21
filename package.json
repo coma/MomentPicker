@@ -18,8 +18,8 @@
         "run-sequence": "^0"
     },
     "scripts"        : {
-        "postinstall": "bower install",
-        "pretest"    : "npm install -g bower gulp && npm install",
+        "postinstall": "npm install -g bower gulp && bower install",
+        "pretest"    : "npm install",
         "test"       : "gulp test",
         "posttest"   : "gulp deploy"
     }
